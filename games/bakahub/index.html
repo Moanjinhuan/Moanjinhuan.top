@@ -49,7 +49,7 @@
   })();
 </script>
 
-<link rel="stylesheet" href="/css/style.css?v=20261123e">
+<link rel="stylesheet" href="/css/style.css?v=20261123g">
 <noscript><style>.intro{display:none!important}.menu-toggle{display:none!important}</style></noscript>
 
 
@@ -190,7 +190,7 @@
     <div>
       <p class="eyebrow">GAMES · TOUHOU BAKAHUB</p>
       <h1 class="game-hero__title">东方BakaHub</h1>
-      <p class="game-hero__desc">东方 Project 风格的弹幕射击占位 Demo。角色、场景、敌机昵称都还没画好，先把玩法框架跑起来。</p>
+      <p class="game-hero__desc">东方 Project 风格的弹幕射击 Demo。STAGE 1「幻想屯异闻」——角色、场景、敌机和 Boss 都还是占位，先把东方式的界面和弹幕框架搭起来。</p>
     </div>
     <div class="game-hero__chips">
       <span class="chip chip--gold">DEMO</span>
@@ -204,41 +204,69 @@
   <div class="wrap game-layout">
     <div class="game-main">
       <div class="game-shell">
-        <div class="game-stage">
-          <canvas id="bakahub-canvas" width="480" height="720" tabindex="0" aria-label="东方BakaHub 弹幕射击游戏画面"></canvas>
+        <div class="game-window">
+          <div class="game-field" id="game-field">
+            <canvas id="bakahub-canvas" width="384" height="448" tabindex="0" aria-label="东方BakaHub 弹幕射击游戏画面"></canvas>
 
-          <div class="game-hud" aria-live="polite">
-            <div class="game-hud__item"><span>SCORE</span><b id="game-score">000000</b></div>
-            <div class="game-hud__item"><span>LIVES</span><b id="game-lives">♥ ♥ ♥</b></div>
-            <div class="game-hud__item"><span>WAVE</span><b id="game-wave">01</b></div>
+            <div class="game-bossbar" id="game-bossbar" hidden>
+              <div class="game-bossbar__top">
+                <span id="game-boss-name">玄夜</span>
+                <span id="game-spell">灯符「长夜孤灯」</span>
+              </div>
+              <div class="game-bossbar__track"><i id="game-boss-fill"></i></div>
+            </div>
+
+            <div class="game-dialogue" id="game-dialogue" hidden>
+              <p class="game-dialogue__name">玄夜</p>
+              <p class="game-dialogue__text" id="game-dialogue-text">又有人闯进幻想屯的夜里了。</p>
+              <span class="game-dialogue__hint">Ctrl / Z 跳过</span>
+            </div>
+
+            <div class="game-overlay" id="game-ready">
+              <p class="game-overlay__eyebrow">TOUHOU BAKAHUB · STAGE 1</p>
+              <h2>东方BakaHub</h2>
+              <p class="game-overlay__story">幻想屯异闻<br>夜里的弹幕，把没写下的故事都翻了出来。</p>
+              <button type="button" class="btn btn--primary" id="game-start">开始游戏</button>
+              <p class="game-overlay__hint">按 Z / Enter 开始 · 方向键移动 · Z 射击</p>
+            </div>
+
+            <div class="game-overlay" id="game-pause" hidden>
+              <p class="game-overlay__eyebrow">PAUSE</p>
+              <h2>暂停</h2>
+              <p>按 Enter / Esc 继续。</p>
+              <button type="button" class="btn btn--primary" id="game-resume">继续游戏</button>
+            </div>
+
+            <div class="game-overlay" id="game-over" hidden>
+              <p class="game-overlay__eyebrow" id="game-over-kicker">GAME OVER</p>
+              <h2 id="game-over-title">满身疮痍</h2>
+              <p>本次得分 <b id="game-score-final">0</b></p>
+              <button type="button" class="btn btn--primary" id="game-restart">再来一局</button>
+              <p class="game-overlay__hint">按 Z / Enter 再来一局</p>
+            </div>
           </div>
 
-          <div class="game-boss" id="game-boss" hidden>
-            <span>占位 BOSS</span>
-            <div class="game-boss__bar"><i id="game-boss-fill"></i></div>
-          </div>
-
-          <div class="game-overlay" id="game-ready">
-            <p class="game-overlay__eyebrow">TOUHOU BAKAHUB · DEMO</p>
-            <h2>东方BakaHub</h2>
-            <p>角色、场景、敌机昵称均为占位。<br>先用最简单的形状，把弹幕玩法跑起来。</p>
-            <button type="button" class="btn btn--primary" id="game-start">开始游戏</button>
-            <p class="game-overlay__hint">方向键移动 · Z 射击 · Shift 低速</p>
-          </div>
-
-          <div class="game-overlay" id="game-pause" hidden>
-            <p class="game-overlay__eyebrow">PAUSED</p>
-            <h2>暂停中</h2>
-            <p>按 Esc / P 或点击下方按钮继续。</p>
-            <button type="button" class="btn btn--primary" id="game-resume">继续游戏</button>
-          </div>
-
-          <div class="game-overlay" id="game-over" hidden>
-            <p class="game-overlay__eyebrow" id="game-over-kicker">GAME OVER</p>
-            <h2 id="game-over-title">这一局结束了</h2>
-            <p>本次得分 <b id="game-score-final">0</b></p>
-            <button type="button" class="btn btn--primary" id="game-restart">再来一局</button>
-          </div>
+          <aside class="game-side" aria-label="游戏状态">
+            <div class="game-side__head">
+              <span>东方BakaHub</span>
+              <em>STAGE 1</em>
+            </div>
+            <div class="game-side__row"><span>HiScore</span><b id="game-hiscore">00000000</b></div>
+            <div class="game-side__row"><span>Score</span><b id="game-score">00000000</b></div>
+            <div class="game-side__divider"></div>
+            <div class="game-side__row"><span>Player</span><b>墨羽</b></div>
+            <div class="game-side__row"><span>Power</span><b id="game-power">1.00</b></div>
+            <div class="game-side__row"><span>Graze</span><b id="game-graze">0</b></div>
+            <div class="game-side__row"><span>Point</span><b id="game-point">0</b></div>
+            <div class="game-side__row"><span>Lives</span><b id="game-lives">★★★</b></div>
+            <div class="game-side__row"><span>Bombs</span><b id="game-bombs">✦✦✦</b></div>
+            <div class="game-side__row"><span>Wave</span><b id="game-wave">01</b></div>
+            <div class="game-side__boss">
+              <span>BOSS</span>
+              <b id="game-side-boss">—</b>
+              <em id="game-side-spell">—</em>
+            </div>
+          </aside>
         </div>
 
         <div class="game-touch" aria-label="触屏操作">
@@ -250,12 +278,13 @@
           </div>
           <div class="game-touch__actions">
             <button type="button" data-touch="shoot">射击</button>
+            <button type="button" data-touch="bomb">炸弹</button>
             <button type="button" data-touch="focus">低速</button>
             <button type="button" id="game-touch-pause">暂停</button>
           </div>
         </div>
       </div>
-      <p class="game-note">当前版本是玩法框架：没有正式角色立绘、场景、敌机名和 Boss 名。后续会替换成正式素材。</p>
+      <p class="game-note">当前是玩法框架：角色「墨羽」、Boss「玄夜」、敌机「纸灵 / 灯鬼」都是临时国风占位名，正式立绘和场景后续替换。</p>
     </div>
 
     <aside class="game-help">
@@ -264,15 +293,16 @@
       <ul class="game-keys">
         <li><span class="game-keys__keys"><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd></span><span>移动</span></li>
         <li><span class="game-keys__keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span>移动</span></li>
-        <li><span class="game-keys__keys"><kbd>Z</kbd><span>/</span><kbd>J</kbd></span><span>射击</span></li>
+        <li><span class="game-keys__keys"><kbd>Z</kbd></span><span>射击</span></li>
+        <li><span class="game-keys__keys"><kbd>X</kbd></span><span>炸弹 / 清弹</span></li>
         <li><span class="game-keys__keys"><kbd>Shift</kbd></span><span>低速移动，显示判定点</span></li>
-        <li><span class="game-keys__keys"><kbd>Esc</kbd><span>/</span><kbd>P</kbd></span><span>暂停</span></li>
-        <li><span class="game-keys__keys"><kbd>R</kbd></span><span>重新开始</span></li>
+        <li><span class="game-keys__keys"><kbd>Enter</kbd><span>/</span><kbd>Esc</kbd></span><span>暂停</span></li>
+        <li><span class="game-keys__keys"><kbd>Ctrl</kbd></span><span>跳过对话</span></li>
       </ul>
-      <p class="game-help__note">手机上可以用画面下方的方向键和射击/低速按钮；建议横屏或电脑键盘游玩。</p>
+      <p class="game-help__note">手机端用画面下方的方向键、射击、炸弹和低速按钮。建议用电脑键盘游玩。</p>
       <div class="game-help__status">
         <span class="chip chip--gold">占位 Demo</span>
-        <span class="chip">0.1</span>
+        <span class="chip">0.2</span>
       </div>
       <a class="text-link game-help__back" href="/games/">← 回到小游戏</a>
     </aside>
@@ -280,7 +310,7 @@
 </section>
 
 <noscript><p class="wrap game-note">这个游戏需要 JavaScript 才能运行。</p></noscript>
-<script src="/js/bakahub.js?v=20261123e" defer></script>
+<script src="/js/bakahub.js?v=20261123g" defer></script>
 
   </main>
 
@@ -324,6 +354,6 @@
 </button>
 
 
-  <script src="/js/main.js?v=20261123e" defer></script>
+  <script src="/js/main.js?v=20261123g" defer></script>
 </body>
 </html>
