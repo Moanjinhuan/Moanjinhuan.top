@@ -49,7 +49,7 @@
   })();
 </script>
 
-<link rel="stylesheet" href="/css/style.css?v=20261123b">
+<link rel="stylesheet" href="/css/style.css?v=20261123c">
 <noscript><style>.intro{display:none!important}.menu-toggle{display:none!important}</style></noscript>
 
 
@@ -198,73 +198,177 @@
     </div>
 
     
+    <div class="archive-filter" id="archive-filter">
+      <label class="archive-search">
+        <span class="archive-search__icon" aria-hidden="true">⌕</span>
+        <input type="search" id="archive-search-input" placeholder="搜索标题…" autocomplete="off" aria-label="搜索文章标题">
+      </label>
 
-    
-      <section class="archive-year">
-        <h2 class="archive-year__title"><span>2026</span><em>4 篇</em></h2>
-        <div class="archive-list">
+      <div class="archive-select" data-archive-select="category">
+        <button type="button" class="archive-select__toggle" data-archive-category-toggle aria-expanded="false" aria-haspopup="listbox">
+          <span data-archive-category-label>全部分类</span>
+          <span class="archive-select__caret" aria-hidden="true">⌄</span>
+        </button>
+        <div class="archive-select__panel" role="listbox" aria-label="分类筛选" hidden>
+          <button type="button" class="archive-option is-active" data-category="all">全部分类 <em>4</em></button>
           
-          <article class="archive-item">
-            <a class="archive-item__date" href="/2026/09/21/four/" tabindex="-1" aria-hidden="true">09.21</a>
-            <div class="archive-item__body">
-              <h3><a href="/2026/09/21/four/">搭建页面“骨架”（引入 layout.ejs）以及让页面漂亮起来（加入 css）</a></h3>
-              <div class="archive-item__meta">
-                
-                  <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
-                
-                  <a class="chip chip--small" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
-                
-              </div>
-            </div>
-          </article>
+          <button type="button" class="archive-option" data-category="日常">日常 <em>0</em></button>
           
-          <article class="archive-item">
-            <a class="archive-item__date" href="/2026/09/20/three/" tabindex="-1" aria-hidden="true">09.20</a>
-            <div class="archive-item__body">
-              <h3><a href="/2026/09/20/three/">页面出现乱码文字并解决</a></h3>
-              <div class="archive-item__meta">
-                
-                  <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
-                
-                  <a class="chip chip--small" href="/tags/%E6%8E%92%E9%94%99/">排错</a>
-                
-              </div>
-            </div>
-          </article>
+          <button type="button" class="archive-option" data-category="学习">学习 <em>4</em></button>
           
-          <article class="archive-item">
-            <a class="archive-item__date" href="/2026/09/19/two/" tabindex="-1" aria-hidden="true">09.19</a>
-            <div class="archive-item__body">
-              <h3><a href="/2026/09/19/two/">删除或换掉 reimu 主题</a></h3>
-              <div class="archive-item__meta">
-                
-                  <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
-                
-                  <a class="chip chip--small" href="/tags/%E4%B8%BB%E9%A2%98/">主题</a>
-                
-              </div>
-            </div>
-          </article>
-          
-          <article class="archive-item">
-            <a class="archive-item__date" href="/2026/09/10/First/" tabindex="-1" aria-hidden="true">09.10</a>
-            <div class="archive-item__body">
-              <h3><a href="/2026/09/10/First/">🎉 零基础小白从零搭建 Hexo 博客踩坑全记录（附常用指令小抄）</a></h3>
-              <div class="archive-item__meta">
-                
-                  <a class="chip chip--small" href="/tags/%E5%8D%9A%E5%AE%A2%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/">博客旅途的起点</a>
-                
-                  <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
-                
-                  <a class="chip chip--small" href="/tags/%E5%BB%BA%E7%AB%99/">建站</a>
-                
-              </div>
-            </div>
-          </article>
+          <button type="button" class="archive-option" data-category="成就">成就 <em>0</em></button>
           
         </div>
-      </section>
+      </div>
+
+      <div class="archive-select archive-select--tags" data-archive-select="tag">
+        <button type="button" class="archive-select__toggle" data-archive-tag-toggle aria-expanded="false" aria-haspopup="true">
+          <span data-archive-tag-label>全部标签</span>
+          <span class="archive-select__caret" aria-hidden="true">⌄</span>
+        </button>
+        <div class="archive-select__panel archive-select__panel--tags" hidden>
+          <p class="archive-select__hint">可多选；多选时需同时包含</p>
+          <div class="archive-check-list">
+            
+            <label class="archive-check">
+              <input type="checkbox" value="Hexo">
+              <span>Hexo</span>
+              <em>4</em>
+            </label>
+            
+            <label class="archive-check">
+              <input type="checkbox" value="博客旅途的起点">
+              <span>博客旅途的起点</span>
+              <em>1</em>
+            </label>
+            
+            <label class="archive-check">
+              <input type="checkbox" value="建站">
+              <span>建站</span>
+              <em>1</em>
+            </label>
+            
+            <label class="archive-check">
+              <input type="checkbox" value="排错">
+              <span>排错</span>
+              <em>1</em>
+            </label>
+            
+            <label class="archive-check">
+              <input type="checkbox" value="前端">
+              <span>前端</span>
+              <em>1</em>
+            </label>
+            
+            <label class="archive-check">
+              <input type="checkbox" value="主题">
+              <span>主题</span>
+              <em>1</em>
+            </label>
+            
+          </div>
+          
+          <div class="archive-select__foot">
+            <button type="button" class="archive-clear-tags">清除标签</button>
+          </div>
+        </div>
+      </div>
+
+      <span class="archive-filter__count" id="archive-filter-count" aria-live="polite">共 4 篇</span>
+    </div>
     
+
+    
+
+    <div class="archive-list-wrap" id="archive-list-wrap">
+      
+        <section class="archive-year">
+          <h2 class="archive-year__title"><span>2026</span><em>4 篇</em></h2>
+          <div class="archive-list">
+            
+            
+            <article class="archive-item"
+              data-category="学习"
+              data-tags="Hexo|前端"
+              data-title="搭建页面“骨架”（引入 layout.ejs）以及让页面漂亮起来（加入 css）">
+              <a class="archive-item__date" href="/2026/09/21/four/" tabindex="-1" aria-hidden="true">09.21</a>
+              <div class="archive-item__body">
+                <h3><a href="/2026/09/21/four/">搭建页面“骨架”（引入 layout.ejs）以及让页面漂亮起来（加入 css）</a></h3>
+                <div class="archive-item__meta">
+                  
+                    <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
+                  
+                    <a class="chip chip--small" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                  
+                </div>
+              </div>
+            </article>
+            
+            
+            <article class="archive-item"
+              data-category="学习"
+              data-tags="Hexo|排错"
+              data-title="页面出现乱码文字并解决">
+              <a class="archive-item__date" href="/2026/09/20/three/" tabindex="-1" aria-hidden="true">09.20</a>
+              <div class="archive-item__body">
+                <h3><a href="/2026/09/20/three/">页面出现乱码文字并解决</a></h3>
+                <div class="archive-item__meta">
+                  
+                    <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
+                  
+                    <a class="chip chip--small" href="/tags/%E6%8E%92%E9%94%99/">排错</a>
+                  
+                </div>
+              </div>
+            </article>
+            
+            
+            <article class="archive-item"
+              data-category="学习"
+              data-tags="Hexo|主题"
+              data-title="删除或换掉 reimu 主题">
+              <a class="archive-item__date" href="/2026/09/19/two/" tabindex="-1" aria-hidden="true">09.19</a>
+              <div class="archive-item__body">
+                <h3><a href="/2026/09/19/two/">删除或换掉 reimu 主题</a></h3>
+                <div class="archive-item__meta">
+                  
+                    <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
+                  
+                    <a class="chip chip--small" href="/tags/%E4%B8%BB%E9%A2%98/">主题</a>
+                  
+                </div>
+              </div>
+            </article>
+            
+            
+            <article class="archive-item"
+              data-category="学习"
+              data-tags="博客旅途的起点|Hexo|建站"
+              data-title="🎉 零基础小白从零搭建 Hexo 博客踩坑全记录（附常用指令小抄）">
+              <a class="archive-item__date" href="/2026/09/10/First/" tabindex="-1" aria-hidden="true">09.10</a>
+              <div class="archive-item__body">
+                <h3><a href="/2026/09/10/First/">🎉 零基础小白从零搭建 Hexo 博客踩坑全记录（附常用指令小抄）</a></h3>
+                <div class="archive-item__meta">
+                  
+                    <a class="chip chip--small" href="/tags/%E5%8D%9A%E5%AE%A2%E6%97%85%E9%80%94%E7%9A%84%E8%B5%B7%E7%82%B9/">博客旅途的起点</a>
+                  
+                    <a class="chip chip--small" href="/tags/Hexo/">Hexo</a>
+                  
+                    <a class="chip chip--small" href="/tags/%E5%BB%BA%E7%AB%99/">建站</a>
+                  
+                </div>
+              </div>
+            </article>
+            
+          </div>
+        </section>
+      
+    </div>
+
+    <div class="archive-filter-empty" id="archive-filter-empty" hidden>
+      <p>没有找到匹配的文章。</p>
+      <button type="button" class="btn btn--line" id="archive-clear-all">清除筛选</button>
+    </div>
 
     
   </div>
@@ -311,6 +415,6 @@
 </button>
 
 
-  <script src="/js/main.js?v=20261123b" defer></script>
+  <script src="/js/main.js?v=20261123c" defer></script>
 </body>
 </html>

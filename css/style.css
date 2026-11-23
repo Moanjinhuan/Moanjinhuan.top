@@ -1057,6 +1057,133 @@ body.nav-open .mobile-nav { opacity: 1; visibility: visible; transform: none; }
 .archive-item h3 a { transition: color 0.25s; }
 .archive-item:hover h3 a { color: var(--accent); }
 .archive-item__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+
+/* 文集筛选：标题 / 分类 / 多选标签 */
+.archive-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: -22px 0 34px;
+  padding: 0 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.archive-search {
+  display: flex;
+  flex: 1 1 250px;
+  align-items: center;
+  gap: 8px;
+  min-width: 210px;
+  height: 38px;
+  padding: 0 13px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  transition: border-color 0.25s;
+}
+.archive-search:focus-within { border-color: var(--accent); }
+.archive-search__icon { color: var(--muted); font-size: 17px; line-height: 1; }
+.archive-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+.archive-search input::placeholder { color: var(--muted); }
+.archive-select { position: relative; }
+.archive-select__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s;
+}
+.archive-select__toggle:hover { border-color: var(--accent); color: var(--accent); }
+.archive-select__toggle[aria-expanded='true'] { border-color: var(--accent); color: var(--accent); }
+.archive-select__caret { color: var(--muted); font-size: 11px; }
+.archive-select__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
+  padding: 8px;
+  border: 1px solid var(--line-2);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.archive-select__panel[hidden] { display: none; }
+.archive-select__panel--tags { width: 280px; }
+.archive-select__hint { margin: 2px 6px 8px; color: var(--muted); font-size: 10px; letter-spacing: 0.04em; }
+.archive-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+}
+.archive-option:hover { border-color: var(--line); color: var(--accent); }
+.archive-option.is-active { border-color: rgba(201, 168, 106, 0.4); background: var(--gold-soft); color: var(--accent); }
+.archive-option em { color: var(--muted); font-style: normal; font-size: 10px; }
+.archive-check-list { max-height: 260px; overflow-y: auto; padding: 0 2px; }
+.archive-check {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 7px;
+  color: var(--text-2);
+  font-size: 12px;
+  cursor: pointer;
+}
+.archive-check:hover { background: rgba(201, 168, 106, 0.07); }
+.archive-check input { accent-color: var(--accent); }
+.archive-check span { flex: 1; }
+.archive-check em { color: var(--muted); font-style: normal; font-size: 10px; }
+.archive-select__empty { margin: 8px; color: var(--muted); font-size: 11px; }
+.archive-select__foot { margin-top: 7px; padding-top: 7px; border-top: 1px solid var(--line); text-align: right; }
+.archive-clear-tags { padding: 4px 7px; border: 0; background: transparent; color: var(--muted); font-family: inherit; font-size: 10.5px; cursor: pointer; }
+.archive-clear-tags:hover { color: var(--accent); }
+.archive-filter__count { margin-left: auto; color: var(--muted); font-size: 10.5px; letter-spacing: 0.1em; white-space: nowrap; }
+.archive-item[hidden], .archive-year[hidden] { display: none; }
+.archive-filter-empty {
+  margin: 34px 0;
+  padding: 46px 24px;
+  border: 1px dashed var(--line-2);
+  color: var(--muted);
+  text-align: center;
+}
+.archive-filter-empty p { margin: 0 0 16px; font-size: 13px; }
+.archive-filter-empty .btn { padding: 9px 22px; font-size: 11px; }
+@media (max-width: 720px) {
+  .archive-filter { margin-top: -12px; }
+  .archive-search { flex: 1 1 100%; }
+  .archive-select { flex: 1 1 auto; }
+  .archive-select__toggle { width: 100%; }
+  .archive-select__panel { min-width: 100%; }
+  .archive-select__panel--tags { width: 100%; }
+  .archive-filter__count { width: 100%; margin-left: 0; }
+}
 .back-link { display: inline-block; margin-top: 36px; color: var(--muted); font-size: 12px; letter-spacing: 0.1em; }
 .back-link:hover { color: var(--accent); }
 

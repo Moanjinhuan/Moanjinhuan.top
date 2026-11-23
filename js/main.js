@@ -248,6 +248,152 @@
     applyFilters();
   }
 
+  /* ---------- 文集筛选：标题 / 分类 / 多选标签 ---------- */
+  var archiveFilter = document.getElementById('archive-filter');
+  if (archiveFilter) {
+    var archiveItems = Array.prototype.slice.call(document.querySelectorAll('.archive-item'));
+    var archiveYears = Array.prototype.slice.call(document.querySelectorAll('.archive-year'));
+    var archiveCount = document.getElementById('archive-filter-count');
+    var archiveEmpty = document.getElementById('archive-filter-empty');
+    var archiveSearch = document.getElementById('archive-search-input');
+    var categoryToggle = archiveFilter.querySelector('[data-archive-category-toggle]');
+    var categoryLabel = archiveFilter.querySelector('[data-archive-category-label]');
+    var categoryPanel = archiveFilter.querySelector('[data-archive-select="category"] .archive-select__panel');
+    var tagToggle = archiveFilter.querySelector('[data-archive-tag-toggle]');
+    var tagLabel = archiveFilter.querySelector('[data-archive-tag-label]');
+    var tagPanel = archiveFilter.querySelector('[data-archive-select="tag"] .archive-select__panel');
+    var tagChecks = Array.prototype.slice.call(archiveFilter.querySelectorAll('.archive-check input'));
+    var clearTags = archiveFilter.querySelector('.archive-clear-tags');
+    var clearAll = document.getElementById('archive-clear-all');
+    var archiveState = { category: 'all', tags: new Set(), q: '' };
+
+    var closeArchivePanels = function () {
+      if (categoryPanel) categoryPanel.hidden = true;
+      if (tagPanel) tagPanel.hidden = true;
+      if (categoryToggle) categoryToggle.setAttribute('aria-expanded', 'false');
+      if (tagToggle) tagToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    var updateTagLabel = function () {
+      var n = archiveState.tags.size;
+      if (!tagLabel) return;
+      if (!n) tagLabel.textContent = '全部标签';
+      else if (n === 1) tagLabel.textContent = Array.from(archiveState.tags)[0];
+      else tagLabel.textContent = '已选 ' + n + ' 个标签';
+    };
+
+    var applyArchiveFilters = function () {
+      var q = archiveState.q.trim().toLowerCase();
+      var visible = 0;
+
+      archiveItems.forEach(function (item) {
+        var tags = (item.getAttribute('data-tags') || '').split('|').filter(Boolean);
+        var okCategory = archiveState.category === 'all' || item.getAttribute('data-category') === archiveState.category;
+        var okTags = true;
+        archiveState.tags.forEach(function (tag) {
+          if (tags.indexOf(tag) === -1) okTags = false;
+        });
+        var okSearch = !q || (item.getAttribute('data-title') || '').toLowerCase().indexOf(q) !== -1;
+        var ok = okCategory && okTags && okSearch;
+        item.hidden = !ok;
+        if (ok) visible += 1;
+      });
+
+      archiveYears.forEach(function (year) {
+        var items = Array.prototype.slice.call(year.querySelectorAll('.archive-item'));
+        var count = items.filter(function (item) { return !item.hidden; }).length;
+        year.hidden = count === 0;
+        var countEl = year.querySelector('.archive-year__title em');
+        if (countEl) countEl.textContent = count + ' 篇';
+      });
+
+      if (archiveCount) archiveCount.textContent = '共 ' + visible + ' 篇';
+      if (archiveEmpty) archiveEmpty.hidden = visible !== 0;
+    };
+
+    var resetArchiveFilters = function () {
+      archiveState.category = 'all';
+      archiveState.tags.clear();
+      archiveState.q = '';
+      if (archiveSearch) archiveSearch.value = '';
+      tagChecks.forEach(function (cb) { cb.checked = false; });
+      if (categoryLabel) categoryLabel.textContent = '全部分类';
+      if (categoryPanel) {
+        categoryPanel.querySelectorAll('[data-category]').forEach(function (btn) {
+          btn.classList.toggle('is-active', btn.getAttribute('data-category') === 'all');
+        });
+      }
+      updateTagLabel();
+      closeArchivePanels();
+      applyArchiveFilters();
+    };
+
+    if (archiveSearch) {
+      archiveSearch.addEventListener('input', function () {
+        archiveState.q = archiveSearch.value;
+        applyArchiveFilters();
+      });
+    }
+
+    if (categoryToggle && categoryPanel) {
+      categoryToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var willOpen = categoryPanel.hidden;
+        closeArchivePanels();
+        categoryPanel.hidden = !willOpen;
+        categoryToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+      categoryPanel.querySelectorAll('[data-category]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          archiveState.category = btn.getAttribute('data-category');
+          if (categoryLabel) categoryLabel.textContent = archiveState.category === 'all' ? '全部分类' : archiveState.category;
+          categoryPanel.querySelectorAll('[data-category]').forEach(function (b) {
+            b.classList.toggle('is-active', b === btn);
+          });
+          closeArchivePanels();
+          applyArchiveFilters();
+        });
+      });
+    }
+
+    if (tagToggle && tagPanel) {
+      tagToggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var willOpen = tagPanel.hidden;
+        closeArchivePanels();
+        tagPanel.hidden = !willOpen;
+        tagToggle.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+      tagChecks.forEach(function (cb) {
+        cb.addEventListener('change', function () {
+          if (cb.checked) archiveState.tags.add(cb.value);
+          else archiveState.tags.delete(cb.value);
+          updateTagLabel();
+          applyArchiveFilters();
+        });
+      });
+      if (clearTags) {
+        clearTags.addEventListener('click', function () {
+          archiveState.tags.clear();
+          tagChecks.forEach(function (cb) { cb.checked = false; });
+          updateTagLabel();
+          applyArchiveFilters();
+        });
+      }
+    }
+
+    if (clearAll) clearAll.addEventListener('click', resetArchiveFilters);
+
+    document.addEventListener('click', function (e) {
+      if (!archiveFilter.contains(e.target)) closeArchivePanels();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeArchivePanels();
+    });
+
+    applyArchiveFilters();
+  }
+
   /* ---------- 作品大图灯箱 ---------- */
   var workLightbox = document.getElementById('work-lightbox');
   if (workLightbox) {

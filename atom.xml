@@ -13,7 +13,7 @@
     <id>https://moanjinhuan.top/2026/09/21/four/</id>
     <published>2026-09-21T15:35:41.000Z</published>
     <updated>2026-09-21T15:35:41.000Z</updated>
-    <category term="建站手记"/>
+    <category term="学习"/>
     <content type="html"><![CDATA[<h2 id="🏗️-第一步：搭建页面“骨架”（引入-layout-ejs）"><a href="#🏗️-第一步：搭建页面“骨架”（引入-layout-ejs）" class="headerlink" title="🏗️ 第一步：搭建页面“骨架”（引入 layout.ejs）"></a>🏗️ 第一步：搭建页面“骨架”（引入 layout.ejs）</h2><p>现在的 index.ejs 既充当了网页外壳，又写了文章列表，这很乱。标准做法是把“外壳”独立出来。</p>
 <span id="more"></span>
 
@@ -30,7 +30,7 @@
     <id>https://moanjinhuan.top/2026/09/20/three/</id>
     <published>2026-09-20T01:51:11.000Z</published>
     <updated>2026-09-20T01:51:11.000Z</updated>
-    <category term="建站手记"/>
+    <category term="学习"/>
     <content type="html"><![CDATA[<h2 id="🔍-为什么是乱码？"><a href="#🔍-为什么是乱码？" class="headerlink" title="🔍 为什么是乱码？"></a>🔍 为什么是乱码？</h2><p>用的是 Windows 自带的“记事本”编辑的 index.ejs。记事本默认会用“ANSI（中文系统下是 GBK）”格式保存文件。</p>
 <p>但 Hexo 和浏览器默认用“UTF-8”格式去读。就像你用英语发音规则去读拼音，读出来肯定听不懂。</p>
 <span id="more"></span>
@@ -55,7 +55,7 @@
     <id>https://moanjinhuan.top/2026/09/19/two/</id>
     <published>2026-09-19T00:39:09.000Z</published>
     <updated>2026-09-19T00:39:09.000Z</updated>
-    <category term="建站手记"/>
+    <category term="学习"/>
     <content type="html"><![CDATA[<h2 id="🗑️第一步：如何卸载或换掉现在的-Reimu-主题？"><a href="#🗑️第一步：如何卸载或换掉现在的-Reimu-主题？" class="headerlink" title="🗑️第一步：如何卸载或换掉现在的 Reimu 主题？"></a>🗑️第一步：如何卸载或换掉现在的 Reimu 主题？</h2><p>千万不要直接去 themes 文件夹里把 reimu 文件夹删掉，如果 _config.yml 里还写着 theme: reimu，Hexo 启动会直接报错。</p>
 <span id="more"></span>
 
@@ -103,7 +103,7 @@
     <id>https://moanjinhuan.top/2026/09/10/First/</id>
     <published>2026-09-10T06:24:10.000Z</published>
     <updated>2026-09-10T06:24:10.000Z</updated>
-    <category term="建站手记"/>
+    <category term="学习"/>
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <h4 id="作为一个完全零基础的小白，从最初不知道命令行是什么，到最后成功把博客上线、换上漂亮的Reimu主题、改好头像，一路踩坑一路填，终于拥有了自己的网站：https-moanjinhuan-top。"><a href="#作为一个完全零基础的小白，从最初不知道命令行是什么，到最后成功把博客上线、换上漂亮的Reimu主题、改好头像，一路踩坑一路填，终于拥有了自己的网站：https-moanjinhuan-top。" class="headerlink" title="作为一个完全零基础的小白，从最初不知道命令行是什么，到最后成功把博客上线、换上漂亮的Reimu主题、改好头像，一路踩坑一路填，终于拥有了自己的网站：https://moanjinhuan.top。"></a>作为一个完全零基础的小白，从最初不知道命令行是什么，到最后成功把博客上线、换上漂亮的Reimu主题、改好头像，一路踩坑一路填，终于拥有了自己的网站：<a href="https://moanjinhuan.top./">https://moanjinhuan.top。</a></h4><h4 id="这篇文章记录了我整个搭建过程、遇到的报错以及解决办法，希望帮到同样零基础的你！"><a href="#这篇文章记录了我整个搭建过程、遇到的报错以及解决办法，希望帮到同样零基础的你！" class="headerlink" title="这篇文章记录了我整个搭建过程、遇到的报错以及解决办法，希望帮到同样零基础的你！"></a>这篇文章记录了我整个搭建过程、遇到的报错以及解决办法，希望帮到同样零基础的你！</h4></blockquote>
 <span id="more"></span>
@@ -134,7 +134,7 @@
 <h2 id="2-创建-GitHub-Pages-仓库"><a href="#2-创建-GitHub-Pages-仓库" class="headerlink" title="2. 创建 GitHub Pages 仓库"></a>2. 创建 GitHub Pages 仓库</h2><blockquote>
 <h4 id="在-GitHub-新建仓库，名字必须是-你的用户名-github-io（例如-Moanjinhuan-github-io），设为-Public。"><a href="#在-GitHub-新建仓库，名字必须是-你的用户名-github-io（例如-Moanjinhuan-github-io），设为-Public。" class="headerlink" title="在 GitHub 新建仓库，名字必须是 你的用户名.github.io（例如 Moanjinhuan.github.io），设为 Public。"></a>在 GitHub 新建仓库，名字必须是 你的用户名.github.io（例如 Moanjinhuan.github.io），设为 Public。</h4></blockquote>
 <h2 id="3-连接本地与远程（九九八十一难开始）"><a href="#3-连接本地与远程（九九八十一难开始）" class="headerlink" title="3. 连接本地与远程（九九八十一难开始）"></a>3. 连接本地与远程（九九八十一难开始）</h2><blockquote>
-<h4 id="❌-遇到的坑一（SSH-连接被拒）："><a href="#❌-遇到的坑一（SSH-连接被拒）：" class="headerlink" title="❌ 遇到的坑一（SSH 连接被拒）："></a>❌ 遇到的坑一（SSH 连接被拒）：</h4><p>使用 git clone <a href="mailto:&#x67;&#x69;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#109;">git@github.com</a>:… 报错 Connection refused。<br>✅ 解决办法： 改用 HTTPS 协议。</p>
+<h4 id="❌-遇到的坑一（SSH-连接被拒）："><a href="#❌-遇到的坑一（SSH-连接被拒）：" class="headerlink" title="❌ 遇到的坑一（SSH 连接被拒）："></a>❌ 遇到的坑一（SSH 连接被拒）：</h4><p>使用 git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#109;">git@github.com</a>:… 报错 Connection refused。<br>✅ 解决办法： 改用 HTTPS 协议。</p>
 </blockquote>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/Moanjinhuan/Moanjinhuan.github.io.git</span><br></pre></td></tr></table></figure>
 
